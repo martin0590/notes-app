@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+div > input:checked + label {
+  border: 2px solid #555;
+}
