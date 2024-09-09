@@ -2,13 +2,18 @@
 
 import NotesContainer from "@/components/NotesContainer";
 import Sidebar from "@/components/Sidebar";
-import Image from "next/image";
+import { v4 as uuidv4 } from 'uuid';
 import { createContext, useEffect, useState } from "react";
 
-export const NotesContext = createContext(null)
+export const NotesContext = createContext<NotesContextProps>({
+  notes: [],
+  addNote: () => {},
+  deleteNote: () => {},
+  saveNote: () => {},
+})
 
 export default function Home() {
-  const [notes, setNotes] = useState(() => {
+  const [notes, setNotes] = useState<NotesProps[]>(() => {
     const notes = localStorage.getItem("notes-data")
     if(notes){
       return JSON.parse(notes)
@@ -16,27 +21,28 @@ export default function Home() {
     return[]
   })
 
-  const addNote = (theme) => {
+  const addNote = (theme: string) => {
     setNotes([
+      ...notes,
       {
-        id: Math.random().toString(36),
+        id: uuidv4(),
         text: "",
         theme,
         timestamp: +new Date(),
         editmode: true
-      },
-      ...notes
+      }
     ])
   }
 
-  const deleteNote = (noteId) => {
+  const deleteNote = (noteId: string) => {
     setNotes(
       notes.filter(note => note.id != noteId)
     )
   }
 
-  const saveNote = (noteId, text) => {
+  const saveNote = (noteId: string, text: string) => {
     const note = notes.find(note => note.id === noteId)
+    if(!note) return
     note.text = text
     note.editmode = false
     setNotes([...notes])
@@ -52,8 +58,8 @@ export default function Home() {
     addNote,
     deleteNote,
     saveNote
-
   }
+
   return (
     <NotesContext.Provider value={value}>
       <main className="grid min-h-screen grid-cols-[65px_1fr] ">

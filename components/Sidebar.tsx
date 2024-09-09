@@ -19,15 +19,17 @@ const Sidebar = () => {
   const [selectedTheme, setSelectedTheme] = useState(colors[0])
 
   return (
-    <div className="text-center gap-1 px-1 border-r-2 border-r-[#ccc]">
-      <button className="w-[40px] aspect-square text-[1em] bg-transparent border-2 border-[#888] rounded-full text-[#222] cursor-pointer" onClick={() => addNote(selectedTheme)}>
-        <Image
-          src={'/assets/icon-plus.svg'}
-          width={20}
-          alt="plus icon"
-          height={20}
-          className="text-white"
-        />
+    <div className="flex flex-col py-2 items-center gap-1 px-1 border-r-2 border-r-[#ccc]">
+      <button 
+        className="flex justify-center items-center w-[40px] h-[40px] text-[1em] bg-transparent border-2 border-[#888] rounded-full text-[#222] cursor-pointer"
+        onClick={() => addNote(selectedTheme)}>
+          <Image
+            src={'/assets/icon-plus.svg'}
+            width={20}
+            alt="plus icon"
+            height={20}
+            className="text-white"
+          />
       </button>
 
       <div className="mt-2">
