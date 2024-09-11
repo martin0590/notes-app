@@ -1,9 +1,9 @@
 'use client'
 
-import { NotesContext } from "@/app/page"
 import Image from "next/image"
 import Link from "next/link"
 import { useContext, useState } from "react"
+import useNotesContext from "./shared/useNotesContext"
 
 const colors = [
   "#ebcfad",
@@ -14,7 +14,7 @@ const colors = [
 ]
 
 const Sidebar = () => {
-  const {addNote} = useContext(NotesContext)
+  const {addNote} = useNotesContext()
 
   const [selectedTheme, setSelectedTheme] = useState(colors[0])
 

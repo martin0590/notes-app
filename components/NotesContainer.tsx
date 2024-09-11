@@ -1,10 +1,11 @@
-import { NotesContext } from "@/app/page"
+'use client'
 import { useContext } from "react"
 import Note from "./Note"
+import useNotesContext from "./shared/useNotesContext"
 
 const NotesContainer = () => {
 
-  const {notes} = useContext(NotesContext)
+  const {notes} = useNotesContext()
 
   return (
     <div className="p-2">

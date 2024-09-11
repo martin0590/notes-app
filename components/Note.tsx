@@ -1,9 +1,10 @@
-import { NotesContext } from "@/app/page"
+'use client'
 import Image from "next/image"
 import { useContext, useEffect, useRef, useState } from "react"
+import useNotesContext from "./shared/useNotesContext"
 
 const Note = ({ note }: { note: NotesProps }) => {
-  const { saveNote, deleteNote } = useContext(NotesContext)
+  const { saveNote, deleteNote } = useNotesContext()
 
   const [isEditMode, setIsEditMode] = useState(note.editmode)
   const [text, setText] = useState(note.text)
