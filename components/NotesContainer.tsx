@@ -11,7 +11,8 @@ const NotesContainer = () => {
     <div className="p-2">
       <h2 className="text-2xl text-white">Notes</h2>
       <div className="mt-2 grid grid-cols-3 gap-2">
-        {notes.map(note => <Note note={note} key={note.id} />)}
+        { notes.map(note => <Note note={note} key={note.id} />)
+        }
       </div>
     </div>
   )
