@@ -14,14 +14,6 @@ export const NotesContext = createContext<NotesContextProps>({
 
 const NotesProvider = ({ children }: {children: React.ReactNode}) => {
   const { notes, setNotes } = useLocalForage()
-  // const [notes, setNotes] = useState<NotesProps[]>( () => {
-  //   const notes = localStorage.getItem("notes-data")
-  //   if(notes){
-  //     return JSON.parse(notes)
-  //   }
-  //   return[]
-  // })
-
 
   const addNote = (theme: string) => {
     setNotes([
@@ -49,10 +41,6 @@ const NotesProvider = ({ children }: {children: React.ReactNode}) => {
     note.editmode = false
     setNotes([...notes])
   }
-
-  // useEffect(() => {
-  //   localStorage.setItem("notes-data", JSON.stringify(notes))
-  // }, [notes])
   
 
   const value = {
