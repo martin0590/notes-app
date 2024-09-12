@@ -1,6 +1,8 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import localforage from "localforage";
+import useLocalForage from "./useLocalForage";
 
 
 export const NotesContext = createContext<NotesContextProps>({
@@ -11,13 +13,15 @@ export const NotesContext = createContext<NotesContextProps>({
 })
 
 const NotesProvider = ({ children }: {children: React.ReactNode}) => {
-  const [notes, setNotes] = useState<NotesProps[]>(() => {
-    const notes = localStorage.getItem("notes-data")
-    if(notes){
-      return JSON.parse(notes)
-    }
-    return[]
-  })
+  const { notes, setNotes } = useLocalForage()
+  // const [notes, setNotes] = useState<NotesProps[]>( () => {
+  //   const notes = localStorage.getItem("notes-data")
+  //   if(notes){
+  //     return JSON.parse(notes)
+  //   }
+  //   return[]
+  // })
+
 
   const addNote = (theme: string) => {
     setNotes([
@@ -46,9 +50,9 @@ const NotesProvider = ({ children }: {children: React.ReactNode}) => {
     setNotes([...notes])
   }
 
-  useEffect(() => {
-    localStorage.setItem("notes-data", JSON.stringify(notes))
-  }, [notes])
+  // useEffect(() => {
+  //   localStorage.setItem("notes-data", JSON.stringify(notes))
+  // }, [notes])
   
 
   const value = {
