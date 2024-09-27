@@ -14,7 +14,7 @@ const Sidebar = () => {
   return (
     <div className="flex flex-col py-2 items-center gap-1 px-1 border-r-2 border-r-[#ccc]">
       <button 
-        className="flex justify-center items-center w-[40px] h-[40px] text-[1em] bg-transparent border-2 border-[#888] rounded-full text-[#222] cursor-pointer"
+        className={`flex justify-center items-center w-[40px] h-[40px] text-[1em] bg-transparent border-2 border-[#888] hover:border-white rounded-full text-[#222] cursor-pointer`}
         onClick={() => addNote(selectedTheme)}>
           <Image
             src={'/assets/icon-plus.svg'}

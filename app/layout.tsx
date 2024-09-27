@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NotesProvider from "@/components/shared/NotesContext";
+import { Slide, ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import localforage from "localforage";
 import useLocalForage from "./useLocalForage";
+import toast from "react-hot-toast";
 
 
 export const NotesContext = createContext<NotesContextProps>({
@@ -26,12 +27,14 @@ const NotesProvider = ({ children }: {children: React.ReactNode}) => {
         editmode: true
       }
     ])
+    toast("Note Added", { duration: 1000 })
   }
 
   const deleteNote = (noteId: string) => {
     setNotes(
       notes.filter(note => note.id != noteId)
     )
+    toast("Note Deleted", { duration: 1000 })
   }
 
   const saveNote = (noteId: string, text: string) => {
@@ -40,6 +43,8 @@ const NotesProvider = ({ children }: {children: React.ReactNode}) => {
     note.text = text
     note.editmode = false
     setNotes([...notes])
+    toast("Note Saved", { duration: 1000 })
+    
   }
   
 

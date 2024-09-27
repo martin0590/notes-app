@@ -3,6 +3,7 @@ import { useContext } from "react"
 import Note from "./Note"
 import useNotesContext from "./shared/useNotesContext"
 
+
 const NotesContainer = () => {
 
   const {notes} = useNotesContext()
