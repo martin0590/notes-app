@@ -15,6 +15,10 @@ const Note = ({ note }: { note: NotesProps }) => {
     setIsEditMode(false)
   }
 
+  const handleCopyText = () => {
+    navigator.clipboard.writeText(text)
+  }
+
   const getDateString = (timestamp: number) =>  {
     const temp = new Date(timestamp).toDateString().split(" ")
     return `${temp[2]} ${temp[1]} ${temp[3]}`
@@ -51,7 +55,7 @@ const Note = ({ note }: { note: NotesProps }) => {
       <div className="px-2 py-0 flex items-center gap-2">
         <p className="flex-1 text-[#555] text-md">{getDateString(note.timestamp)}</p>
         {!isEditMode && (
-            <button onClick={handleEditButtonClick} className="flex justify-center items-center w-[30px] h-[30px] rounded-full bg-[#222] border-none outline-none cursor-pointer">
+            <button title="Enable Edit Note" onClick={handleEditButtonClick} className="flex justify-center items-center w-[30px] h-[30px] rounded-full bg-[#222] border-none outline-none cursor-pointer">
               <Image
                 src={'/assets/icon-pencil.svg'}
                 width={20}
@@ -63,7 +67,7 @@ const Note = ({ note }: { note: NotesProps }) => {
           )
         }
         {isEditMode && (
-            <button onClick={handleSaveNote} className="flex justify-center items-center w-[30px] h-[30px] rounded-full bg-[#222] border-none outline-none cursor-pointer">
+            <button title="Save Note" onClick={handleSaveNote} className="flex justify-center items-center w-[30px] h-[30px] rounded-full bg-[#222] border-none outline-none cursor-pointer">
               <Image
                 src={'/assets/icon-save.svg'}
                 width={20}
@@ -74,9 +78,19 @@ const Note = ({ note }: { note: NotesProps }) => {
             </button >
           )
         }
-        <button className="flex justify-center items-center w-[30px] h-[30px] rounded-full bg-[#222] border-none outline-none cursor-pointer" onClick={(e) => deleteNote(note.id)}>
+        <button title="Delete Note" className="flex justify-center items-center w-[30px] h-[30px] rounded-full bg-[#222] border-none outline-none cursor-pointer" onClick={(e) => deleteNote(note.id)}>
           <Image
             src={'/assets/icon-trash.svg'}
+            width={20}
+            alt="delete content icon"
+            height={20}
+            className="text-white"
+          />
+        </button>
+
+        <button title="Copy Text" className="flex justify-center items-center w-[30px] h-[30px] rounded-full bg-[#222] border-none outline-none cursor-pointer" onClick={() => handleCopyText()}>
+          <Image
+            src={'/assets/icon-copy.svg'}
             width={20}
             alt="delete content icon"
             height={20}

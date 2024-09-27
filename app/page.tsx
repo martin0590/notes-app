@@ -1,4 +1,3 @@
-
 import NotesContainer from "@/components/NotesContainer";
 import Sidebar from "@/components/Sidebar";
 

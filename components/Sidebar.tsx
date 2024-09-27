@@ -4,14 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useContext, useState } from "react"
 import useNotesContext from "./shared/useNotesContext"
-
-const colors = [
-  "#ebcfad",
-  "#f5b0a4",
-  "#84dada",
-  "#eff5b1",
-  "#9adbf6",
-]
+import { colors } from '@/constants/colors'
 
 const Sidebar = () => {
   const {addNote} = useNotesContext()
