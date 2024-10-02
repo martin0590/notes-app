@@ -1,9 +1,8 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
-import localforage from "localforage";
 import useLocalForage from "./useLocalForage";
 import toast from "react-hot-toast";
+import { v4 as uuidv4 } from 'uuid';
 
 
 export const NotesContext = createContext<NotesContextProps>({

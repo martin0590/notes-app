@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NotesProvider from "@/components/shared/NotesContext";
-import { Slide, ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "NoteANote",
-  description: "Simple note taking app",
+  description: "Take a note as simple as possible",
 };
 
 export default function RootLayout({
