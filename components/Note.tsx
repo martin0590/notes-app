@@ -1,11 +1,11 @@
 'use client'
 import Image from "next/image"
-import { useContext, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import useNotesContext from "./shared/useNotesContext"
 import { toast } from 'react-hot-toast'
 
 const Note = ({ note }: { note: NotesProps }) => {
-  const { saveNote, deleteNote } = useNotesContext()
+  const { saveNote, deleteNote, changeBold } = useNotesContext()
 
   const [isEditMode, setIsEditMode] = useState(note.editmode)
   const [text, setText] = useState(note.text)
@@ -35,6 +35,10 @@ const Note = ({ note }: { note: NotesProps }) => {
     setIsEditMode(true)
   }
 
+  const handleBoldButtonClick = () => {
+    changeBold(note.id, !note.isBold)
+  }
+
   useEffect(() => {
     if(textareaRef.current){
       textareaRef.current.style.minHeight = textareaRef.current.scrollHeight + 'px'
@@ -49,7 +53,7 @@ const Note = ({ note }: { note: NotesProps }) => {
         ref={textareaRef} 
         readOnly={!isEditMode}
         onChange={(e) => setText(e.target.value)}
-        className="textarea-class resize-none bg-transparent border-none outline-none min-h-[200px] w-full flex-1 text-[#222]"
+        className={`textarea-class resize-none bg-transparent border-none outline-none min-h-[200px] w-full flex-1 text-[#222] ${note.  isBold ? 'font-bold' : ''}`}
         value={text}
         autoFocus
       >
@@ -88,6 +92,16 @@ const Note = ({ note }: { note: NotesProps }) => {
             alt="delete content icon"
             height={20}
             className="text-white"
+          />
+        </button>
+
+        <button title="Font Bold" className={`flex justify-center items-center w-[30px] h-[30px] rounded-full bg-[#222] hover:bg-[#6b6666] border-none outline-none cursor-pointer`} onClick={() => handleBoldButtonClick()}>
+          <Image
+            src={'/assets/icon-bold.svg'}
+            width={20}
+            alt="delete content icon"
+            height={20}
+            className=""
           />
         </button>
 

@@ -1,8 +1,8 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import useLocalForage from "./useLocalForage";
 import toast from "react-hot-toast";
-import { v4 as uuidv4 } from 'uuid';
 
 
 export const NotesContext = createContext<NotesContextProps>({
@@ -10,6 +10,7 @@ export const NotesContext = createContext<NotesContextProps>({
   addNote: () => {},
   deleteNote: () => {},
   saveNote: () => {},
+  changeBold: () => {}
 })
 
 const NotesProvider = ({ children }: {children: React.ReactNode}) => {
@@ -23,6 +24,7 @@ const NotesProvider = ({ children }: {children: React.ReactNode}) => {
         text: "",
         theme,
         timestamp: +new Date(),
+        isBold: false,
         editmode: true
       }
     ])
@@ -43,11 +45,18 @@ const NotesProvider = ({ children }: {children: React.ReactNode}) => {
     note.editmode = false
     setNotes([...notes])
     toast("Note Saved", { duration: 1000 })
-    
+  }
+
+  const changeBold = (noteId: string, isBold: boolean) => {
+    const note = notes.find(note => note.id === noteId)
+    if(!note) return
+    note.isBold = isBold
+    setNotes([...notes])
   }
   
 
   const value = {
+    changeBold,
     notes,
     addNote,
     deleteNote,
@@ -63,4 +72,4 @@ const NotesProvider = ({ children }: {children: React.ReactNode}) => {
 
 export default NotesProvider;
 
-export const useNotesContext = () => useContext(NotesContext)
+// export const useNotesContext = () => useContext(NotesContext)

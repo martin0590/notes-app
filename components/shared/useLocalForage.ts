@@ -8,7 +8,7 @@ const useLocalForage = () => {
     const loadNotes = async () => {
       try {
         const storedNotes = await localforage.getItem('notes-data');
-        setNotes(storedNotes as NotesProps[] || []); // Handle empty storage gracefully
+        setNotes(storedNotes as NotesProps[] || []);
       } catch (error) {
         console.error('Error loading notes:', error);
       }
